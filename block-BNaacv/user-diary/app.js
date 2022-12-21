@@ -1,15 +1,21 @@
 var express = require('express');
-var mongoose = require('mongoose');
+var path = require('path');
+var userRouter = require('./routes/users')
+
 var app = express();
 
 //midlleware
 app.set('view engine', "ejs");
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, "/views"));
+
+app.use(express.urlencoded({extended: false}));
 
 //routes
-app.use('/', (req, res) => {
-    res.send('Welcome');
-});
+// app.use('/', (req, res) => {
+//     res.render('index.ejs');
+// });
+
+app.use('/users', userRouter);
 
 //error handler
 app.use((req, res, next) => {
