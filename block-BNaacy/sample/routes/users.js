@@ -4,7 +4,7 @@ var User = require('../model/User')
 
 router.get('/', (req, res) => {
     // handle action
-    res.render('users.ejs')
+    res.render('user.ejs')
 })
 
 router.get('/new', (req, res) => {
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
     //capture form data
     User.create(req.body, (err, user) => {
         if(err) return res.redirect('/users/new');
-        res.redirect("/");
+        res.redirect("/users");
     })
 })
 
