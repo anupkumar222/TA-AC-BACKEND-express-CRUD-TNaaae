@@ -7,12 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Users List</h3>
-    <% details.forEach(user => { %>
-        <a href="/users/<%= user.id %>">
-            <h4><%= user.name %></h4>
-        </a>
-        
-   <% })%>
+    <h2>Single user details</h2>
+    <h3><%= user.name %></h3>
+    <p><%= user.age %></p>
+    <p><%= user.email %></p>
 </body>
 </html>
