@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 var User = require('../model/User')
 
-router.get('/', (req, res) => {
-    // handle action
-    res.render('user.ejs')
-})
+// router.get('/', (req, res, next) => {
+//     // handle action
+    
+//     User.find({}, (err, users) => {
+//         if(err) return next(err);
+//         res.render('users.ejs', { users: users});
+//     })
+// })
 
 router.get('/new', (req, res) => {
     // render the create form
@@ -22,7 +26,12 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     //single user detail
-    res.render('singleUser.ejs');
+    var id = req.params.id;
+    User.findById(id, (err, user) => {
+        if(err) return next(err);
+        res.render('singleUser.ejs', { user });
+    })
+    
 });
 
 router.get('/:id/edit', (req, res) => {
