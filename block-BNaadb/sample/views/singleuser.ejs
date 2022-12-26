@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <h1>Users Detail Page</h1>
-    <h2><%= user.name %></h2>
-    <h3><%= user.email %></h3>
+    <h2>Users Detail Page</h2>
+    <h3><%= user.name %></h3>
+    <h4><%= user.email %></h4>
     <p><%= user.age %></p>
-    <a href="/users/<%=user._id%>/edit">Edit</a>
+    <div class="box">
+      <a class="btn" href="/users/<%=user._id%>/edit">Edit</a>
+      <a class="btn" href="/users/<%=user._id%>/delete">Delete</a>
+    </div>
+
   </body>
 </html>

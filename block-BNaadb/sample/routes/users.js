@@ -38,7 +38,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/edit', (req, res, next) => {
     //edit form
     var id = req.params.id;
-    User.findById(id, (err, user) => {
+    User1.findById(id, (err, user) => {
         if(err) return next(err);
         res.render('editUser', { user })
     })
@@ -46,15 +46,19 @@ router.get('/:id/edit', (req, res, next) => {
 
 router.post('/:id', (req, res) => {
     var id = req.params.id;
-    User.findByIdAndUpdate(id, req.body, (err, updateUser) => {
+    User1.findByIdAndUpdate(id, req.body, (err, updateUser) => {
         if(err) return next(err);
         res.redirect('/users')
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.get('/:id/delete', (req, res, next) => {
     //delete user detail
-    
+    var id = req.params.id;
+    User1.findByIdAndDelete(id, (err, deletedUser) => {
+        if(err) return next(err);
+        res.redirect('/users')
+    })
 });
 
 module.exports = router;
