@@ -8,11 +8,11 @@
 </head>
 <body>
     <h3>Users List</h3>
-    <% details.forEach(user => { %>
-        <a href="/users/<%= user.id %>">
-            <h4><%= user.name %></h4>
+    <%users.forEach(user=>{%>
+        <a href="users/<%=user.id%>">
+            <h4><%=user.name%></h4>
         </a>
         
-   <% })%>
+    <%})%>
 </body>
 </html>
