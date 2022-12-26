@@ -1,4 +1,5 @@
 var express = require('express');
+const User = require('../model/User');
 var router = express.Router();
 var User1 = require('../model/User')
 
@@ -6,7 +7,6 @@ router.get('/', (req, res, next) => {
     // handle action
     
     User1.find({}, (err, users) => {
-        console.log('uu', users, "oo");
         if(err) return next(err);
         res.render('user.ejs', {users : users});
     })
@@ -28,7 +28,6 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res, next) => {
     //single user detail
     var id = req.params.id;
-    console.log(id,"iddd")
     User1.findById(id, (err, user) => {
         if(err) return next(err);
         res.render('singleUser.ejs',{user});
@@ -36,14 +35,22 @@ router.get('/:id', (req, res, next) => {
     
 });
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', (req, res, next) => {
     //edit form
-    
+    var id = req.params.id;
+    User.findById(id, (err, user) => {
+        if(err) return next(err);
+        res.render('editUser', { user })
+    })
 });
 
-// router.put('/:id', (req, res) => {
-//     //capture the data from update form
-// });
+router.post('/:id', (req, res) => {
+    var id = req.params.id;
+    User.findByIdAndUpdate(id, req.body, (err, updateUser) => {
+        if(err) return next(err);
+        res.redirect('/users')
+    })
+});
 
 // router.delete('/:id', (req, res) => {
 //     //delete user detail
